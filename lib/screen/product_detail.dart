@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prroduct_api_flutter/screen/buy_detail.dart';
+import 'package:prroduct_api_flutter/screen/cart.dart';
 import 'package:prroduct_api_flutter/screen/list_images.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -29,7 +31,13 @@ class _ProductDetailState extends State<ProductDetail> {
                     fontWeight: FontWeight.bold)),
             Spacer(),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BuyDetail(data: widget.data),
+                    ));
+              },
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Colors.deepOrange)),
@@ -39,7 +47,13 @@ class _ProductDetailState extends State<ProductDetail> {
               width: 15,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartData(),
+                    ));
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.deepOrange),
               ),
