@@ -57,7 +57,7 @@ class _ProductDetailState extends State<ProductDetail> {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.deepOrange),
               ),
-              child: Text("Add to Cart"),
+              child: Text("Favourite"),
             )
           ],
         ),

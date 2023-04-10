@@ -1,19 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:prroduct_api_flutter/screen/cart.dart';
 import 'package:prroduct_api_flutter/screen/list_images.dart';
 import 'product_detail.dart';
 
-class PaymentSysytem extends StatefulWidget {
-  PaymentSysytem({super.key, required this.data, required this.totalprice});
-  Products data;
-  int totalprice;
+class Cartpayment extends StatefulWidget {
+  Cartpayment({super.key, required this.data});
+  CartData data;
 
   @override
-  State<PaymentSysytem> createState() => _PaymentSysytemState();
+  State<Cartpayment> createState() => _CartpaymentState();
 }
 
-class _PaymentSysytemState extends State<PaymentSysytem> {
+class _CartpaymentState extends State<Cartpayment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _PaymentSysytemState extends State<PaymentSysytem> {
             ),
           ),
           Container(
-            height: 60,
+            height: 30,
             color: Colors.white,
             child: Row(
               children: [
@@ -100,7 +100,7 @@ class _PaymentSysytemState extends State<PaymentSysytem> {
                   width: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text("Cash On Delivery",
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold)),
@@ -115,10 +115,10 @@ class _PaymentSysytemState extends State<PaymentSysytem> {
             color: Colors.black.withOpacity(0.1),
           ),
           SizedBox(
-            height: 40,
+            height: 55,
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 Text(
@@ -128,29 +128,27 @@ class _PaymentSysytemState extends State<PaymentSysytem> {
                       fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
-                Text("Rs: ${widget.totalprice}")
+                Text("Rs: ${calculatecart()}")
               ],
             ),
           ),
           Padding(
-            padding:
-                const EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 5),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 Text(
-                  "Delivery Charge",
+                  "Delivery charge",
                   style: TextStyle(
                       color: Colors.black.withOpacity(0.8),
                       fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
-                Text("Rs: ${widget.data.delivery_charge}")
+                Text("Rs: 100")
               ],
             ),
           ),
           Padding(
-            padding:
-                const EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 5),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 Text(
@@ -161,7 +159,7 @@ class _PaymentSysytemState extends State<PaymentSysytem> {
                 ),
                 Spacer(),
                 Text(
-                  "Rs: ${widget.totalprice + 100}",
+                  "Rs: ${calculatecart() + 100} ",
                   style: TextStyle(
                       color: Colors.deepOrange, fontWeight: FontWeight.bold),
                 )

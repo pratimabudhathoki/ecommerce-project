@@ -12,6 +12,13 @@ class BuyDetail extends StatefulWidget {
 
 class _BuyDetailState extends State<BuyDetail> {
   int counter = 1;
+  int finalPrice = 0;
+  @override
+  void initState() {
+    super.initState();
+    finalPrice = widget.data.price;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,10 @@ class _BuyDetailState extends State<BuyDetail> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PaymentSysytem(data: widget.data),
+                  builder: (context) => PaymentSysytem(
+                    data: widget.data,
+                    totalprice: finalPrice,
+                  ),
                 ));
           },
           style: ButtonStyle(
@@ -58,7 +68,7 @@ class _BuyDetailState extends State<BuyDetail> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Cost Price Rs: " + widget.data.price.toString(),
+                      Text("Cost Price Rs: ${widget.data.price}",
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -77,7 +87,7 @@ class _BuyDetailState extends State<BuyDetail> {
                         height: 100,
                       ),
                       Text(
-                        "Total Rs: ${widget.data.price + widget.data.delivery_charge}",
+                        "Total Rs: ${finalPrice + widget.data.delivery_charge}",
                         style: TextStyle(
                             color: Colors.deepOrange,
                             fontWeight: FontWeight.bold,
@@ -105,6 +115,7 @@ class _BuyDetailState extends State<BuyDetail> {
                       if (counter != 1) {
                         counter--;
                       }
+                      finalPrice = quantity(widget.data, counter);
                     });
                   },
                   child: Container(
@@ -138,6 +149,7 @@ class _BuyDetailState extends State<BuyDetail> {
                       if (counter < 5) {
                         counter++;
                       }
+                      finalPrice = quantity(widget.data, counter);
                     });
                   },
                   child: Container(

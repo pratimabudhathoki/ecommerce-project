@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prroduct_api_flutter/screen/cart.dart';
 import 'package:prroduct_api_flutter/screen/home.dart';
+import 'package:prroduct_api_flutter/screen/newprofilepage.dart';
+import 'package:prroduct_api_flutter/screen/newuiprofile.dart';
 import 'package:prroduct_api_flutter/screen/product_detail.dart';
 import 'package:prroduct_api_flutter/screen/profile.dart';
+import 'package:prroduct_api_flutter/screen/searchpage.dart';
 import 'list_images.dart';
 
 class LandingPage extends StatefulWidget {
@@ -18,9 +21,12 @@ class _GridViewState extends State<LandingPage> {
       body: bottomNavIndex == 0
           ? HomePage()
           : bottomNavIndex == 1
-              ? CartData()
-              : Profilepage(),
+              ? SearchPage()
+              : bottomNavIndex == 2
+                  ? CartData()
+                  : NewUiProfile(),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         iconSize: 25,
         selectedItemColor: Colors.red,
         currentIndex: bottomNavIndex,
@@ -33,6 +39,10 @@ class _GridViewState extends State<LandingPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_shopping_cart),
